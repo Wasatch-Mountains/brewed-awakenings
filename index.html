@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brewed Awakenings | Premium Coffee Subscription</title>
+  <meta name="description" content="Elevate your daily routine with the Brewed Awakenings Coffee Subscription. Take the coffee vibe quiz, choose your roast, and schedule home delivery. Pausable anytime.">
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo">
+        <span class="logo-bold">BREWED</span>
+        <span class="logo-light">AWAKENINGS</span>
+      </a>
+      <nav class="nav-links">
+        <a href="#about">Our Roasts</a>
+        <a href="#quiz-anchor" class="active">Subscription</a>
+        <a href="#benefits">Ethical Sourcing</a>
+        <a href="#contact">Café Locations</a>
+      </nav>
+      <div class="header-actions">
+        <div class="cart-icon-wrapper" aria-label="Shopping Cart">
+          <svg class="cart-svg" viewBox="0 0 24 24" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+            <line x1='3' y1='6' x2='21' y2='6'></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+          <span class="cart-counter" id="cart-counter">1</span>
+        </div>
+        <a href="#quiz-anchor" class="btn btn-primary btn-sm">Join Club</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <div class="hero-content">
+        <span class="hero-tagline">Now Roasting: The 90s Blend</span>
+        <h1 class="hero-title">Caffeine for your main character arc.</h1>
+        <p class="hero-subtitle">Freshly roasted, ethically sourced, small-batch coffee delivered straight to your door on your own schedule. Zero commitments, maximum throughput.</p>
+        <div class="hero-cta-group">
+          <a href="#quiz-anchor" class="btn btn-primary">Take the Coffee Quiz</a>
+          <a href="#benefits" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-media">
+        <div class="image-frame">
+          <img src="assets/classic_packaging.png" alt="Brewed Awakenings Coffee Bag on desk" class="hero-img">
+          <div class="badge-overlay">
+            <span class="badge-title">90s Medium roast</span>
+            <span class="badge-sub">Single Origin</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Coffee Quiz Section -->
+  <section class="quiz-section" id="quiz-anchor">
+    <div class="quiz-section-header">
+      <span class="section-badge">Caffeine Configurator</span>
+      <h2>Build Your Subscription Box</h2>
+      <p>Answer a few questions to let our roasting algorithm match your taste vibe, or customize your volume and frequency parameters directly.</p>
+    </div>
+
+    <div class="quiz-box-container">
+      
+      <!-- Progress Bar Tracker -->
+      <div class="progress-bar-wrapper">
+        <div class="progress-line">
+          <div class="progress-line-fill" id="quiz-progress-line-fill" style="width: 20%;"></div>
+        </div>
+        <div class="progress-steps">
+          <div class="progress-step-node active" id="node-step-1">
+            <div class="node-num">1</div>
+            <span class="node-label">Grind</span>
+          </div>
+          <div class="progress-step-node" id="node-step-2">
+            <div class="node-num">2</div>
+            <span class="node-label">Roast Vibe</span>
+          </div>
+          <div class="progress-step-node" id="node-step-3">
+            <div class="node-num">3</div>
+            <span class="node-label">Frequency</span>
+          </div>
+          <div class="progress-step-node" id="node-step-4">
+            <div class="node-num">4</div>
+            <span class="node-label">Add-ons</span>
+          </div>
+          <div class="progress-step-node" id="node-step-5">
+            <div class="node-num">5</div>
+            <span class="node-label">Review</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Interactive Form Card -->
+      <div class="quiz-card">
+        <form id="wizard-form" onsubmit="event.preventDefault();">
+          
+          <!-- STEP 1: Brew Method -->
+          <div class="quiz-pane active" id="step-pane-1">
+            <div class="pane-header">
+              <h3>Step 1: How do you brew?</h3>
+              <p>Select your primary extraction hardware. This allows our baristas to calibrate your grind settings precisely.</p>
+            </div>
+            
+            <div class="modern-options-grid">
+              <label class="modern-card" for="brew-drip">
+                <input type="radio" name="brew_method" id="brew-drip" value="Drip Machine" checked>
+                <span class="card-outline"></span>
+                <span class="card-interior">
+                  <span class="card-icon drip-machine-icon"></span>
+                  <span class="card-title">Drip Coffeemaker</span>
+                  <span class="card-detail">For classic automatic brewers. Standard, reliable extraction.</span>
+                </span>
+              </label>
+
+              <label class="modern-card" for="brew-espresso">
+                <input type="radio" name="brew_method" id="brew-espresso" value="Espresso">
+                <span class="card-outline"></span>
+                <span class="card-interior">
+                  <span class="card-icon espresso-icon"></span>
+                  <span class="card-title">Espresso &amp; Moka Pot</span>
+                  <span class="card-detail">Ultra-fine grind. Crafted for high-pressure espresso shots.</span>
+                </span>
+              </label>
+
+              <label class="modern-card" for="brew-pourover">
+                <input type="radio" name="brew_method" id="brew-pourover" value="Pour Over">
+                <span class="card-outline"></span>
+                <span class="card-interior">
+                  <span class="card-icon pourover-icon"></span>
+                  <span class="card-title">Pour Over / Aeropress</span>
+                  <span class="card-detail">Medium-fine grind. Clean, articulate cup for slow mornings.</span>
+                </span>
+              </label>
+
+              <label class="modern-card" for="brew-press">
+                <input type="radio" name="brew_method" id="brew-press" value="French Press / Cold Brew">
+                <span class="card-outline"></span>
+                <span class="card-interior">
+                  <span class="card-icon French-press-icon"></span>
+                  <span class="card-title">French Press &amp; Cold Brew</span>
+                  <span class="card-detail">Coarse grind. Thick texture, rich body, and low acidity.</span>
+                </span>
+              </label>
+
+              <label class="modern-card" for="brew-pods">
+                <input type="radio" name="brew_method" id="brew-pods" value="Pods">
+                <span class="card-outline"></span>
+                <span class="card-interior">
+                  <span class="card-icon pod-icon"></span>
+                  <span class="card-title">Reusable Pods</span>
+                  <span class="card-detail">Fine grind ready for reusable pod inserts. No judgment.</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- STEP 2: Taste Vibe Quiz -->
+          <div class="quiz-pane" id="step-pane-2">
+            <div class="pane-header">
+              <h3>Step 2: Take the Coffee Vibe Quiz</h3>
+              <p>Answer these personality metrics to determine your recommended roasting level.</p>
+            </div>
+
+            <div class="quiz-layouts">
+              <div class="quiz-left-col">
+                <div class="question-box">
+                  <h4>1. Pick your morning workspace style</h4>
+                  <div class="modern-radios">
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_desk" value="mechanical" checked>
+                      <span class="pill-btn-content">Mechanical Keyboard with clicky switches</span>
+                    </label>
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_desk" value="succulent">
+                      <span class="pill-btn-content">A slightly dying succulent and lo-fi notes</span>
+                    </label>
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_desk" value="monitors">
+                      <span class="pill-btn-content">Triple screens and active code terminals</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="question-box mt-20">
+                  <h4>2. Choose your focus background audio</h4>
+                  <div class="modern-radios">
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_sound" value="synthwave" checked>
+                      <span class="pill-btn-content">Chiptune &amp; Synthwave loops</span>
+                    </label>
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_sound" value="rain">
+                      <span class="pill-btn-content">Cozy rain static and coffeehouse jazz</span>
+                    </label>
+                    <label class="radio-pill-btn">
+                      <input type="radio" name="quiz_sound" value="silence">
+                      <span class="pill-btn-content">Pure complete silence</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="quiz-right-col">
+                <div class="recommendation-card">
+                  <div class="rec-icon-box"></div>
+                  <span class="rec-lbl">Recommended roast match:</span>
+                  <h4 class="rec-title" id="recommended-roast-text">90s Blend Medium Roast</h4>
+                  <p class="rec-text">Balanced, articulate, and smooth. Tastes like a classic physical café setting.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 3: Quantity & Frequency -->
+          <div class="quiz-pane" id="step-pane-3">
+            <div class="pane-header">
+              <h3>Step 3: Choose Quantity &amp; Frequency</h3>
+              <p>Customize the flow of coffee beans into your pantry depending on your consumption throughput.</p>
+            </div>
+
+            <div class="parameters-block">
+              <!-- Slider -->
+              <div class="custom-slider-block">
+                <div class="slider-header">
+                  <label for="quantity-slider" class="param-lbl">Monthly Volume:</label>
+                  <span class="slider-display" id="quantity-counter">2 Bags / Month</span>
+                </div>
+                <input type="range" id="quantity-slider" name="quantity_bags" min="1" max="4" value="2" step="1" class="modern-range">
+                <div class="range-labels">
+                  <span>1 Bag (Casual)</span>
+                  <span>2 Bags (Steady)</span>
+                  <span>3 Bags (Heavy)</span>
+                  <span>4 Bags (Overlord)</span>
+                </div>
+              </div>
+
+              <!-- Frequency Option Cards -->
+              <div class="frequency-block mt-30">
+                <label class="param-lbl">Delivery Interval:</label>
+                <div class="freq-grid">
+                  <label class="freq-card" for="freq-weekly">
+                    <input type="radio" name="delivery_frequency" id="freq-weekly" value="weekly">
+                    <span class="freq-card-interior">
+                      <span class="freq-name">Weekly</span>
+                      <span class="freq-meta">Best for shared spaces.</span>
+                      <span class="freq-tag">Save 10%</span>
+                    </span>
+                  </label>
+
+                  <label class="freq-card" for="freq-biweekly">
+                    <input type="radio" name="delivery_frequency" id="freq-biweekly" value="biweekly" checked>
+                    <span class="freq-card-interior">
+                      <span class="freq-name">Bi-Weekly</span>
+                      <span class="freq-meta">Our most popular rhythm.</span>
+                      <span class="freq-tag">Save 5%</span>
+                    </span>
+                  </label>
+
+                  <label class="freq-card" for="freq-monthly">
+                    <input type="radio" name="delivery_frequency" id="freq-monthly" value="monthly">
+                    <span class="freq-card-interior">
+                      <span class="freq-name">Monthly</span>
+                      <span class="freq-meta">Keeps it fresh, paced.</span>
+                      <span class="freq-tag">Standard Rate</span>
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 4: Add-Ons -->
+          <div class="quiz-pane" id="step-pane-4">
+            <div class="pane-header">
+              <h3>Step 4: Unlocked Welcome Pack Add-Ons</h3>
+              <p>Add exclusive Brewed Awakenings gear to your first box at discounted rates.</p>
+            </div>
+
+            <div class="addon-split-layout">
+              <div class="addon-selectors-col">
+                
+                <label class="addon-row" for="addon-mug">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="addon-mug" name="addons" value="mug" data-price="8.00">
+                    <span class="custom-check"></span>
+                  </div>
+                  <div class="addon-details">
+                    <span class="addon-title">Chunky diner mug (+ $8.00)</span>
+                    <span class="addon-desc">Heavy-duty ceramic, forest green glazing.</span>
+                  </div>
+                </label>
+
+                <label class="addon-row" for="addon-stickers">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="addon-stickers" name="addons" value="stickers" data-price="4.00" checked>
+                    <span class="custom-check"></span>
+                  </div>
+                  <div class="addon-details">
+                    <span class="addon-title">Pixel laptop stickers (+ $4.00)</span>
+                    <span class="addon-desc">Ultra-durable vinyl sticker sheets.</span>
+                  </div>
+                </label>
+
+                <label class="addon-row" for="addon-tote">
+                  <div class="checkbox-wrapper">
+                    <input type="checkbox" id="addon-tote" name="addons" value="tote" data-price="12.00">
+                    <span class="custom-check"></span>
+                  </div>
+                  <div class="addon-details">
+                    <span class="addon-title">Canvas laptop tote bag (+ $12.00)</span>
+                    <span class="addon-desc">Thick organic canvas with protective pocket divider.</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- Live visualizer bag box mockup -->
+              <div class="bundle-visualizer-col">
+                <span class="vis-lbl">YOUR FIRST BOX PACK:</span>
+                <div class="bundle-box-stage">
+                  <div class="stage-item main-coffee-bag"></div>
+                  <div class="stage-item box-mug-item hidden" id="preview-mug-icon"></div>
+                  <div class="stage-item box-sticker-item" id="preview-sticker-icon"></div>
+                  <div class="stage-item box-tote-item hidden" id="preview-tote-icon"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- STEP 5: Checkout Summary -->
+          <div class="quiz-pane" id="step-pane-5">
+            <div class="pane-header">
+              <h3>Step 5: Review &amp; Launch</h3>
+              <p>Double-check your coffee box parameters before starting your subscription loop.</p>
+            </div>
+
+            <div class="review-split-layout">
+              
+              <!-- Summary Card -->
+              <div class="review-summary-card">
+                <h5>BOX CONFIGURATION</h5>
+                <ul class="summary-details-list">
+                  <li>
+                    <span class="prop">Grind calibration:</span>
+                    <span class="val" id="summary-hardware">Drip Coffeemaker</span>
+                  </li>
+                  <li>
+                    <span class="prop">Roast profile:</span>
+                    <span class="val" id="summary-blend">90s Blend Medium Roast</span>
+                  </li>
+                  <li>
+                    <span class="prop">Quantity:</span>
+                    <span class="val" id="summary-qty">2 Bags / Month</span>
+                  </li>
+                  <li>
+                    <span class="prop">Interval rate:</span>
+                    <span class="val" id="summary-freq">Bi-Weekly</span>
+                  </li>
+                  <li id="summary-row-addons">
+                    <span class="prop">Add-ons:</span>
+                    <span class="val" id="summary-addons">Laptop Stickers</span>
+                  </li>
+                </ul>
+
+                <div class="summary-price-badge">
+                  <span class="price-lbl">Monthly Box Cost</span>
+                  <h4 class="price-value" id="summary-total-price">$28.80</h4>
+                  <span class="price-note">* First month contains promotion discounts</span>
+                </div>
+              </div>
+
+              <!-- Checkout inputs -->
+              <div class="checkout-fields-card">
+                <h5>USER INFORMATION (TESTING DEMO)</h5>
+                
+                <div class="input-field">
+                  <label for="checkout-email">Active Email</label>
+                  <input type="email" id="checkout-email" class="modern-input" placeholder="name@domain.com" required>
+                </div>
+
+                <div class="input-field mt-15">
+                  <label for="checkout-card">Mock Card Details</label>
+                  <input type="text" id="checkout-card" class="modern-input" placeholder="4000 1234 5678 9010" value="4242 4242 4242 4242" required>
+                </div>
+
+                <p class="demo-notice-text">ℹ️ This is a usability mockup. No actual payment processing or real charging takes place.</p>
+              </div>
+
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- Action Navigation Buttons -->
+      <div class="quiz-controls">
+        <button class="btn btn-secondary" id="btn-back" disabled>Back</button>
+        <button class="btn btn-primary" id="btn-next">Next Step</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section class="benefits-section" id="benefits">
+    <div class="benefits-container">
+      <div class="benefit-item">
+        <div class="benefit-icon ship-icon"></div>
+        <h4>Free Fresh Shipping</h4>
+        <p>All subscription cycles qualify for free carbon-neutral shipping.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon roast-icon"></div>
+        <h4>Monday Roasting Loop</h4>
+        <p>Roasted in small batches on Monday morning, shipped Tuesday afternoon.</p>
+      </div>
+      <div class="benefit-item">
+        <div class="benefit-icon paper-icon"></div>
+        <h4>Compostable Packaging</h4>
+        <p>Paper bags lined with biodegradable plant starch materials.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Guestbook Reviews Section -->
+  <section class="guestbook-section">
+    <div class="section-header">
+      <h2>Subscriber Guestbook Logs</h2>
+      <p>Recent posts left by beta testers and active members.</p>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-bubble">
+        <span class="user">@cozy_coder_99</span>
+        <p>"the 90s Blend medium roast is actually cracked. perfect acidity while styling elements in css. code compiles 20% faster now."</p>
+      </div>
+      <div class="review-bubble">
+        <span class="user">@mech_keys_only</span>
+        <p>"Drip grind fits my retro Bunn machine perfectly. Highly recommend getting the vinyl sticker pack for laptop decoration."</p>
+      </div>
+      <div class="review-bubble">
+        <span class="user">@cyber_barista</span>
+        <p>"Midnight Oil Roast tastes like charcoal and raw determination. Ideal for overnight hackathons. 5 stars."</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="main-footer">
+    <div class="footer-bottom">
+      <p>&copy; 2026 Brewed Awakenings. All simulated rights reserved.</p>
+      <p>Created for Usability Testing Evaluators.</p>
+    </div>
+  </footer>
+
+  <!-- Modern floating Developer/Tester Telemetry panel -->
+  <div class="dev-telemetry-trigger" id="btn-logger-trigger" role="button" tabindex="0">
+    <span class="pulse-indicator-red"></span>
+    ⚙️ Dev Mode / Logger (<span id="log-count-badge">2</span>)
+  </div>
+
+  <div class="dev-console" id="window-logger" style="display: none;">
+    <div class="console-header">
+      <div class="console-title">🖥️ Telemetry Activity Monitor</div>
+      <div class="console-actions">
+        <button class="console-btn btn-clear" id="btn-clear-logs" title="Clear logs">Clear</button>
+        <button class="console-btn btn-close-console" id="btn-close-logger" title="Minimize Logger">✕</button>
+      </div>
+    </div>
+    <div class="console-body">
+      <div class="console-log-wrapper" id="logger-output">
+        <div class="log-row info-row">[14:03:49] System Initialized. Running in modern viewport.</div>
+        <div class="log-row">[14:03:50] Initialized subscription wizard quiz at step 1.</div>
+      </div>
+    </div>
+    <div class="console-status-bar">
+      <span>Logged events: <span id="log-count">2</span></span>
+      <span>Status: ACTIVE</span>
+    </div>
+  </div>
+
+  <!-- Success confirmation Dialog Overlay -->
+  <div class="modal-overlay" id="success-dialog-overlay">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h4>Subscription Established</h4>
+        <button class="btn-close-modal" id="btn-close-success-dialog">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="success-icon-badge">✓</div>
+        <h3>Welcome to the Club!</h3>
+        <p>Your subscription for <strong id="dlg-blend-name">90s Blend Medium Roast</strong> has been configured successfully.</p>
+        <p class="mt-15">An confirmation log and invoice has been simulated for your email address.</p>
+        <div class="modal-actions-btn">
+          <button class="btn btn-primary" id="btn-success-ok">Awesome</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
