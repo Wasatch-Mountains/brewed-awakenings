@@ -1,5 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-  
+  const dataLayer = window.dataLayer = window.dataLayer || [];
+
+  function pushDataLayerEvent(event, payload = {}) {
+    dataLayer.push({ event, ...payload });
+  }
+
   // ==========================================
   // STATE MANAGEMENT
   // ==========================================
@@ -333,6 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
       state.currentStep++;
       renderWizardStep();
       logEvent(`Advanced quiz step to step ${state.currentStep}.`);
+      pushDataLayerEvent('quiz_step_change', { step: state.currentStep });
     } else {
       // Final checkout validation
       if (checkoutEmail.value.trim() === '') {
@@ -347,6 +353,13 @@ document.addEventListener('DOMContentLoaded', () => {
       successDialog.style.display = 'flex';
       logEvent('Subscription Form submitted successfully! Launched Modal Dialog.', true);
       logEvent(`[User Order] Email: "${checkoutEmail.value}" | Roast: "${state.recommendedRoast}" | Total Charge: ${summary.totalPrice.textContent}`);
+      pushDataLayerEvent('subscription_complete', {
+        email: checkoutEmail.value,
+        roast: state.recommendedRoast,
+        total: summary.totalPrice.textContent,
+        quantity_bags: state.quantityBags,
+        delivery_frequency: state.deliveryFrequency
+      });
     }
   });
 
