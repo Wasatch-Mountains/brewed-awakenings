@@ -377,16 +377,36 @@ document.addEventListener('DOMContentLoaded', () => {
     logEvent('Dismissed success dialog.');
   });
 
-  // Demo: fake abandon survey when clicking "Our Roasts"
-  const roastLink = document.querySelector('a[href="#about"]');
-  if (roastLink) {
-    roastLink.addEventListener('click', (event) => {
-      event.preventDefault();
-      window.showAbandonPopup = true;
+  // Demo: fake abandon survey when on #about (Our Roasts)
+  function syncAbandonPopupFlag() {
+    window.showAbandonPopup = location.hash === '#about';
+  }
+
+  syncAbandonPopupFlag();
+
+  window.addEventListener('hashchange', () => {
+    syncAbandonPopupFlag();
+    if (window.showAbandonPopup) {
       if (typeof QSI !== 'undefined' && QSI.API) {
         QSI.API.run();
       }
       logEvent('Demo trigger: Abandon popup initiated.', true);
+    } else {
+      logEvent('Abandon popup flag cleared (left #about).');
+    }
+  });
+
+  const roastLink = document.querySelector('a[href="#about"]');
+  if (roastLink) {
+    roastLink.addEventListener('click', () => {
+      // If already on #about, hashchange won't fire — re-trigger explicitly
+      if (location.hash === '#about') {
+        window.showAbandonPopup = true;
+        if (typeof QSI !== 'undefined' && QSI.API) {
+          QSI.API.run();
+        }
+        logEvent('Demo trigger: Abandon popup initiated.', true);
+      }
     });
   }
 
