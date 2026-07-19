@@ -377,36 +377,28 @@ document.addEventListener('DOMContentLoaded', () => {
     logEvent('Dismissed success dialog.');
   });
 
-  // Demo: fake abandon survey when on #about (Our Roasts)
-  function syncAbandonPopupFlag() {
-    window.showAbandonPopup = location.hash === '#about';
-  }
+  // Demo: fake abandon survey only when "Our Roasts" is clicked
+  window.showAbandonPopup = false;
 
-  syncAbandonPopupFlag();
-
-  window.addEventListener('hashchange', () => {
-    syncAbandonPopupFlag();
-    if (window.showAbandonPopup) {
-      if (typeof QSI !== 'undefined' && QSI.API) {
-        QSI.API.run();
-      }
-      logEvent('Demo trigger: Abandon popup initiated.', true);
-    } else {
-      logEvent('Abandon popup flag cleared (left #about).');
+  function triggerAbandonPopup() {
+    window.showAbandonPopup = true;
+    if (typeof QSI !== 'undefined' && QSI.API) {
+      QSI.API.unload();
+      QSI.API.load();
+      QSI.API.run();
     }
-  });
+    logEvent('Demo trigger: Abandon popup initiated.', true);
+    // Clear so Qualtrics won't keep matching on later evaluations / reloads
+    setTimeout(() => {
+      window.showAbandonPopup = false;
+    }, 1000);
+  }
 
   const roastLink = document.querySelector('a[href="#about"]');
   if (roastLink) {
-    roastLink.addEventListener('click', () => {
-      // If already on #about, hashchange won't fire — re-trigger explicitly
-      if (location.hash === '#about') {
-        window.showAbandonPopup = true;
-        if (typeof QSI !== 'undefined' && QSI.API) {
-          QSI.API.run();
-        }
-        logEvent('Demo trigger: Abandon popup initiated.', true);
-      }
+    roastLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      triggerAbandonPopup();
     });
   }
 
