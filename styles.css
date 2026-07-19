@@ -1209,10 +1209,6 @@ a {
   color: var(--text-muted);
 }
 
-.modal-actions-btn {
-  margin-top: 24px;
-}
-
 /* Floating telemetry Dev Mode Log Console */
 .dev-telemetry-trigger {
   position: fixed;

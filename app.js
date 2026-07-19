@@ -372,15 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Success Dialog OK click handler
-  document.getElementById('btn-success-ok').addEventListener('click', () => {
-    successDialog.style.display = 'none';
-    state.currentStep = 1;
-    checkoutEmail.value = '';
-    renderWizardStep();
-    logEvent('Dismissed success dialog. Reset wizard steps.');
-  });
-  
   document.getElementById('btn-close-success-dialog').addEventListener('click', () => {
     successDialog.style.display = 'none';
     logEvent('Dismissed success dialog.');
