@@ -377,6 +377,19 @@ document.addEventListener('DOMContentLoaded', () => {
     logEvent('Dismissed success dialog.');
   });
 
+  // Demo: fake abandon survey when clicking "Our Roasts"
+  const roastLink = document.querySelector('a[href="#about"]');
+  if (roastLink) {
+    roastLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      window.showAbandonPopup = true;
+      if (typeof QSI !== 'undefined' && QSI.API) {
+        QSI.API.run();
+      }
+      logEvent('Demo trigger: Abandon popup initiated.', true);
+    });
+  }
+
   // ==========================================
   // INITIALIZATION BOOT
   // ==========================================
