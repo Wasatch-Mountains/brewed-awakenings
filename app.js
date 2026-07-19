@@ -352,6 +352,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('dlg-blend-name').textContent = state.recommendedRoast;
       successDialog.style.display = 'flex';
       logEvent('Subscription Form submitted successfully! Launched Modal Dialog.', true);
+      logEvent('Qualtrics CSS selector displayed: #subscription-completed');
       logEvent(`[User Order] Email: "${checkoutEmail.value}" | Roast: "${state.recommendedRoast}" | Total Charge: ${summary.totalPrice.textContent}`);
       pushDataLayerEvent('subscription_complete', {
         email: checkoutEmail.value,
