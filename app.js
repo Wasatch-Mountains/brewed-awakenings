@@ -377,20 +377,21 @@ document.addEventListener('DOMContentLoaded', () => {
     logEvent('Dismissed success dialog.');
   });
 
-  // Demo: fake abandon survey only when "Our Roasts" is clicked
+  // Demo: Qualtrics intercepts when nav links are clicked
   window.showAbandonPopup = false;
+  window.showEthicalSourcingPopup = false;
 
-  function triggerAbandonPopup() {
-    window.showAbandonPopup = true;
+  function triggerQualtricsPopup(flagName, logMessage) {
+    window[flagName] = true;
     if (typeof QSI !== 'undefined' && QSI.API) {
       QSI.API.unload();
       QSI.API.load();
       QSI.API.run();
     }
-    logEvent('Demo trigger: Abandon popup initiated.', true);
+    logEvent(logMessage, true);
     // Clear so Qualtrics won't keep matching on later evaluations / reloads
     setTimeout(() => {
-      window.showAbandonPopup = false;
+      window[flagName] = false;
     }, 1000);
   }
 
@@ -398,7 +399,15 @@ document.addEventListener('DOMContentLoaded', () => {
   if (roastLink) {
     roastLink.addEventListener('click', (event) => {
       event.preventDefault();
-      triggerAbandonPopup();
+      triggerQualtricsPopup('showAbandonPopup', 'Demo trigger: Abandon popup initiated.');
+    });
+  }
+
+  const ethicalLink = document.querySelector('a[href="#benefits"]');
+  if (ethicalLink) {
+    ethicalLink.addEventListener('click', (event) => {
+      event.preventDefault();
+      triggerQualtricsPopup('showEthicalSourcingPopup', 'Demo trigger: Ethical sourcing popup initiated.');
     });
   }
 
